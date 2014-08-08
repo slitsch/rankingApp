@@ -13,10 +13,29 @@ function setupTable() {
        // console.log(event.target);
         var t = event.target;
         if ($(t).hasClass('glyphicon-remove')) {
-            $(t).closest('tr').remove(); //traverses to nearest row
+            $(t).closest('tr').remove(); //traverses to and removes nearest row
         }
-    })
+        if ($(t).hasClass('glyphicon-edit')){
+            var table = $('#items').editable();
+            var rowT = $(this).parent().parent();
+            editRow(rowT);
+        }
+    });
 }
+
+function editRow(rowT) {
+//    function editRow(row) {
+//        $('td',row).each(function() {
+//            $(this).html('<input type="text" value="' + $(this).html() + '" />');
+//        });
+//    }
+    var text = rowT.innerHTML;
+    //var text = row.children("td:nth-child(0)");
+    console.log(text);
+    console.log(row);
+    console.log(row.rating.length);
+}
+
 function setupStars() {
     $('.stars .star').on('mouseover', function(){
         fillStar($(this));
